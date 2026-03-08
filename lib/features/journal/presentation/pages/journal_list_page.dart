@@ -44,11 +44,11 @@ class JournalListPage extends StatelessWidget {
         ),
         floatingActionButton: Builder(
           builder: (ctx) => FloatingActionButton(
+            heroTag: 'journal_fab',
             onPressed: () async {
+              final bloc = ctx.read<JournalBloc>();
               await ctx.router.push(const JournalFormRoute());
-              if (ctx.mounted) {
-                ctx.read<JournalBloc>().add(LoadJournalEvent());
-              }
+              bloc.add(LoadJournalEvent());
             },
             backgroundColor: AppColors.primary,
             foregroundColor: Colors.black,
@@ -110,8 +110,7 @@ class _JournalCard extends StatelessWidget {
               ),
               Text(
                 '${entry.createdAt.day}/${entry.createdAt.month}/${entry.createdAt.year}',
-                style:
-                    TextStyle(color: _moodColor(entry.mood), fontSize: 11),
+                style: TextStyle(color: _moodColor(entry.mood), fontSize: 11),
               ),
             ],
           ),

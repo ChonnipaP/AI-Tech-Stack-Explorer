@@ -51,6 +51,7 @@ class NewsFeedPage extends StatelessWidget {
             },
           ),
           floatingActionButton: FloatingActionButton.extended(
+            heroTag: 'news_fab',
             onPressed: () async {
               final bloc = ctx.read<NewsBloc>();
               await ctx.router.push(const ScanRoute());

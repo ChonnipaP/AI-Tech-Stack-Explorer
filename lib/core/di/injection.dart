@@ -22,6 +22,8 @@ import '../../features/journal/presentation/bloc/journal_bloc.dart';
 final sl = GetIt.instance;
 
 Future<void> initDependencies() async {
+  // ถ้า register แล้ว ไม่ต้องทำซ้ำ
+  if (sl.isRegistered<AppDatabase>()) return;
 
   // ── 1. Hive (Cache) ───────────────────────────────
   await Hive.initFlutter();
